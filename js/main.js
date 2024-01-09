@@ -1,29 +1,47 @@
-// //INIZIALIZZAZIONE COSTANTI TRAMITE PROMPT ALL'UTENTE
-// const resultElement = document.getElementById("prezzoBiglietto");
+//INIZIALIZZAZIONE COSTANTI
+const resultPrice = document.getElementById("prezzoBiglietto");
 
-// const finalNumber = "23";
-// console.log(finalNumber);
+const tariffa = 0.21;
+console.log("Tariffa €" + tariffa);
 
-// const nome = prompt("Qual è il tuo nome?", "Antonio");
-// console.log(nome);
+const scontoUnder = 20;
+console.log("Sconto Under 18 %" + scontoUnder);
 
-// const surname = prompt("Qual è il tuo cognome?", "Di Bari");
-// console.log(surname);
+const scontoOver = 40;
+console.log("Sconto Over 65 %" + scontoOver);
 
-// const color = prompt("Qual è il tuo colore preferito?", "Rosso");
-// console.log(color);
+let prezzo;
+//INIZIALIZZAZIONE COSTANTI TRAMITE PROMPT ALL'UTENTE + RELATIVI CONTROLLI
 
-// //CREAZIONE DELLA PWD IN UNA VARIABILE MEDIANTE CONCATENAZIONE DI COSTANTI
-// let password = nome + surname + color + finalNumber;
-// console.log(password);
+const distanza = parseInt(
+  prompt(
+    "Quanti km vorreste percorrere con la nostra compagnia ferroviaria?",
+    "30"
+  ).trim()
+);
+console.log("Distanza inserita km" + distanza);
 
-// //GESTIONE DEL MAIUSCOLO
-// password = password.toLowerCase();
-// console.log(password);
+const age = parseInt(prompt("Quanti anni ha ?", "24").trim());
+console.log("Anni inseriti " + age);
 
-// //GESTIONE NOME, COGNOME E COLORE DA PIU' DI UNA PAROLA
-// password = password.split(" ").join("");
-// console.log(password);
+if (distanza < 1 || age < 1) {
+  alert("Dati inseriti errati!!");
+} else {
+  //CREAZIONE DEL PREZZO
+  prezzo = tariffa * distanza;
+  console.log("Prezzo lordo €" + prezzo);
+  // APPLICAZIONE DEGLI SCONTI
+  if (age < 18) {
+    prezzo = prezzo - (prezzo * scontoUnder) / 100;
+    console.log("Prezzo scontato €" + prezzo);
+  } else if (age > 65) {
+    prezzo = prezzo - (prezzo * scontoOver) / 100;
+    console.log("Prezzo scontato €" + prezzo);
+  }
+}
+// ARROTONDAMENTO E PARTE DECIMALE INTERESSATA
+prezzo = prezzo.toFixed(2);
+console.log("Prezzo finale €" + prezzo);
 
-// //STAMPA IN OUTPUT DELLA PWD GENERATA TRAMITE ELEMENTO HMTL
-// resultElement.innerText = "La tua password generata è: " + password;
+//STAMPO IN OUTPUT IL PREZZO FINALE TRAMITE ELEMENTO HMTL
+resultPrice.innerText = "Il prezzo del tuo biglietto è: € " + prezzo;
