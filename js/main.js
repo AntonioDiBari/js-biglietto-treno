@@ -13,28 +13,26 @@ console.log("Sconto Over 65 %" + scontoOver);
 let prezzo;
 //INIZIALIZZAZIONE COSTANTI TRAMITE PROMPT ALL'UTENTE + RELATIVI CONTROLLI
 
-const distanza = parseInt(
-  prompt(
-    "Quanti km vorreste percorrere con la nostra compagnia ferroviaria?",
-    "30"
-  ).trim()
-);
+const distanza = prompt(
+  "Quanti km vorreste percorrere con la nostra compagnia ferroviaria?",
+  "30"
+).trim();
 console.log("Distanza inserita km" + distanza);
 
 const age = parseInt(prompt("Quanti anni ha ?", "24").trim());
 console.log("Anni inseriti " + age);
 
-if (distanza < 1 || age < 1) {
+if (isNaN(distanza) || isNaN(age) || distanza < 0 || age < 1 || age > 110) {
   alert("Dati inseriti errati!!");
 } else {
   //CREAZIONE DEL PREZZO
   prezzo = tariffa * distanza;
   console.log("Prezzo lordo €" + prezzo);
   // APPLICAZIONE DEGLI SCONTI
-  if (age < 18) {
+  if (age < 19) {
     prezzo = prezzo - (prezzo * scontoUnder) / 100;
     console.log("Prezzo scontato €" + prezzo);
-  } else if (age > 65) {
+  } else if (age > 64) {
     prezzo = prezzo - (prezzo * scontoOver) / 100;
     console.log("Prezzo scontato €" + prezzo);
   }
